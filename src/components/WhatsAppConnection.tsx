@@ -8,6 +8,7 @@ interface Props {
   status: ConnectionStatus;
   onConnect: () => void;
   onDisconnect: () => void;
+  onSimulateScanned: () => void;
 }
 
 const statusConfig: Record<ConnectionStatus, { label: string; color: string; icon: React.ReactNode }> = {
