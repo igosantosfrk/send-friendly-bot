@@ -8,6 +8,7 @@ interface Props {
   status: ConnectionStatus;
   onConnect: () => void;
   onDisconnect: () => void;
+  onSimulateScanned: () => void;
 }
 
 const statusConfig: Record<ConnectionStatus, { label: string; color: string; icon: React.ReactNode }> = {
@@ -17,7 +18,7 @@ const statusConfig: Record<ConnectionStatus, { label: string; color: string; ico
   reconnecting: { label: 'Reconectando...', color: 'bg-warning', icon: <RefreshCw className="w-4 h-4 animate-spin" /> },
 };
 
-export default function WhatsAppConnection({ status, onConnect, onDisconnect }: Props) {
+export default function WhatsAppConnection({ status, onConnect, onDisconnect, onSimulateScanned }: Props) {
   const [qrDots, setQrDots] = useState<boolean[]>([]);
   const cfg = statusConfig[status];
 
@@ -78,11 +79,17 @@ export default function WhatsAppConnection({ status, onConnect, onDisconnect }: 
         )}
 
         <div className="flex gap-2 w-full">
-          {status !== 'connected' ? (
-            <Button onClick={onConnect} className="flex-1" disabled={status === 'scanning'}>
-              {status === 'scanning' ? 'Aguardando...' : 'Gerar QR Code'}
+          {status === 'disconnected' && (
+            <Button onClick={onConnect} className="flex-1">
+              Gerar QR Code
             </Button>
-          ) : (
+          )}
+          {status === 'scanning' && (
+            <Button onClick={onSimulateScanned} className="flex-1" variant="default">
+              Simular Conexão (escaneei o QR)
+            </Button>
+          )}
+          {status === 'connected' && (
             <Button onClick={onDisconnect} variant="outline" className="flex-1 border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground">
               Desconectar
             </Button>

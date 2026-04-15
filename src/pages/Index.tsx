@@ -13,7 +13,10 @@ const Index = () => {
 
   const handleConnect = () => {
     setConnStatus('scanning');
-    setTimeout(() => setConnStatus('connected'), 3000);
+  };
+
+  const handleSimulateScanned = () => {
+    setConnStatus('connected');
   };
 
   const handleDisconnect = () => setConnStatus('disconnected');
@@ -143,6 +146,7 @@ const Index = () => {
               status={connStatus}
               onConnect={handleConnect}
               onDisconnect={handleDisconnect}
+              onSimulateScanned={handleSimulateScanned}
             />
             <CsvUpload
               contacts={contacts}
