@@ -18,7 +18,7 @@ const statusConfig: Record<ConnectionStatus, { label: string; color: string; ico
   reconnecting: { label: 'Reconectando...', color: 'bg-warning', icon: <RefreshCw className="w-4 h-4 animate-spin" /> },
 };
 
-export default function WhatsAppConnection({ status, onConnect, onDisconnect }: Props) {
+export default function WhatsAppConnection({ status, onConnect, onDisconnect, onSimulateScanned }: Props) {
   const [qrDots, setQrDots] = useState<boolean[]>([]);
   const cfg = statusConfig[status];
 
