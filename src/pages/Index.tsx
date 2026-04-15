@@ -146,6 +146,7 @@ const Index = () => {
               status={connStatus}
               onConnect={handleConnect}
               onDisconnect={handleDisconnect}
+              onSimulateScanned={handleSimulateScanned}
             />
             <CsvUpload
               contacts={contacts}
